@@ -101,13 +101,31 @@ public class photoViewController {
                     return;
                 }
             }
-            album.addPhoto(photo);
-            tableViewPhotos.getItems().add(photo);
-            tableViewPhotos.getSelectionModel().select(photo);
+            boolean added = false;
+            for (Album a : user.getAlbums()){
+                for (Photo p : a.getPhotos()){
+                    if(p.equals(photo)){
+                        album.addPhoto(p);
+                        tableViewPhotos.getItems().add(p);
+                        tableViewPhotos.getSelectionModel().select(p);
+                        imageView.setImage(p.getImage());
+                        caption.setText("Caption: " + p.getCaption());
+                        dateTaken.setText("Date Taken : " + p.getD());
+                        added = true;
+                        return;
+                    }
+                }
+            }
+            if(!added){
+                album.addPhoto(photo);
+                tableViewPhotos.getItems().add(photo);
+                tableViewPhotos.getSelectionModel().select(photo);
+                imageView.setImage(photo.getImage());
+                caption.setText("Caption: " + photo.getCaption());
+                dateTaken.setText("Date Taken : " + photo.getD());
+            }
 
-            imageView.setImage(photo.getImage());
-            caption.setText("Caption: " + photo.getCaption());
-            dateTaken.setText("Date Taken : " + photo.getD());
+
 
         }
     }
