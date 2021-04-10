@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="289.0" prefWidth="566.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photos.view.MCViewController">
+   <children>
+      <Text fx:id="text" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please select an album you would like to move/copy this photo to:" />
+      <Button fx:id="moveTo" layoutX="156.0" layoutY="253.0" mnemonicParsing="false" onAction="#move" text="Move" />
+      <Button fx:id="copyTo" layoutX="248.0" layoutY="253.0" mnemonicParsing="false" onAction="#copy" text="Copy" />
+      <TableView fx:id="tableView" layoutX="11.0" layoutY="45.0" prefHeight="200.0" prefWidth="548.0">
+        <columns>
+          <TableColumn fx:id="colName" prefWidth="126.0" text="Name" />
+          <TableColumn fx:id="colNum" prefWidth="80.33331298828125" text="# Photos" />
+            <TableColumn fx:id="colDate1" prefWidth="169.66668701171875" text="Earliest Date" />
+            <TableColumn fx:id="colDate2" prefWidth="171.33331298828125" text="Latest Date" />
+        </columns>
+      </TableView>
+      <Button fx:id="back" layoutX="339.0" layoutY="253.0" mnemonicParsing="false" onAction="#back" text="Cancel" />
+   </children>
+</AnchorPane>

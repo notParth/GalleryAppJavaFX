@@ -99,7 +99,7 @@ public class addTagViewController {
     }
 
 public void cancel(ActionEvent e)throws Exception {
-    Stage stage = (Stage) okAT.getScene().getWindow();
+    Stage stage = (Stage) cancelAT.getScene().getWindow();
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/photoView.fxml"));
     Parent root = (Parent) loader.load();
     photoViewController controller = loader.<photoViewController>getController();

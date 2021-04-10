@@ -19,7 +19,7 @@
       <Button layoutX="554.0" layoutY="16.0" mnemonicParsing="false" onAction="#addPhoto" text="Add" />
       <Button layoutX="554.0" layoutY="52.0" mnemonicParsing="false" onAction="#deletePhoto" text="Remove" />
       <Button layoutX="554.0" layoutY="89.0" mnemonicParsing="false" onAction="#renamePhoto" text="Recaption" />
-      <Button layoutX="554.0" layoutY="124.0" mnemonicParsing="false" text="Move/Copy To" />
+      <Button fx:id="MC" layoutX="554.0" layoutY="124.0" mnemonicParsing="false" onAction="#moveCopy" text="Move/Copy To" />
       <Button fx:id="logout" layoutX="560.0" layoutY="360.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
       <Button fx:id="back" layoutX="561.0" layoutY="324.0" mnemonicParsing="false" onAction="#back" text="Back" />
       <TableView fx:id="tableViewPhotos" layoutX="251.0" layoutY="24.0" prefHeight="430.0" prefWidth="291.0">

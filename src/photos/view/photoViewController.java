@@ -1,5 +1,6 @@
 package photos.view;
 
+
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,7 +28,7 @@ import java.util.Optional;
 
 public class photoViewController {
     @FXML
-    Button logout, back, nextPhoto, prevPhoto, addTag;
+    Button logout, back, nextPhoto, prevPhoto, addTag, MC;
     @FXML
     TableView<Photo> tableViewPhotos;
     @FXML
@@ -80,6 +81,7 @@ public class photoViewController {
                 }
         );
 
+
     }
 
     //Add/Remove/Rename Photo
@@ -106,7 +108,6 @@ public class photoViewController {
                     return;
                 }
             }
-            boolean added = false;
             for (Album a : user.getAlbums()){
                 for (Photo p : a.getPhotos()){
                     if(p.equals(photo)){
@@ -116,22 +117,16 @@ public class photoViewController {
                         imageView.setImage(p.getImage());
                         caption.setText("Caption: " + p.getCaption());
                         dateTaken.setText("Date Taken : " + p.getD());
-                        added = true;
                         return;
                     }
                 }
             }
-            if(!added){
-                album.addPhoto(photo);
-                tableViewPhotos.getItems().add(photo);
-                tableViewPhotos.getSelectionModel().select(photo);
-                imageView.setImage(photo.getImage());
-                caption.setText("Caption: " + photo.getCaption());
-                dateTaken.setText("Date Taken : " + photo.getD());
-            }
-
-
-
+            album.addPhoto(photo);
+            tableViewPhotos.getItems().add(photo);
+            tableViewPhotos.getSelectionModel().select(photo);
+            imageView.setImage(photo.getImage());
+            caption.setText("Caption: " + photo.getCaption());
+            dateTaken.setText("Date Taken : " + photo.getD());
         }
     }
 
@@ -182,6 +177,26 @@ public class photoViewController {
 
     public void SPP(ActionEvent e) {
         tableViewPhotos.getSelectionModel().selectPrevious();
+    }
+
+
+    //Move, Copy
+
+    public void moveCopy(ActionEvent e) throws Exception {
+        if (user.getAlbums().isEmpty()) {
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setTitle("ERROR");
+            errorAlert.setContentText("Problem: no photo is selected.");
+            errorAlert.setHeaderText("Whoops! Something went wrong when trying to move/copy this photo.");
+            errorAlert.showAndWait();
+        }
+        Stage stage = (Stage) MC.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/MCView.fxml"));
+        Parent root = (Parent) loader.load();
+        MCViewController controller = loader.<MCViewController>getController();
+        Photo photo = tableViewPhotos.getSelectionModel().getSelectedItem();
+        controller.start(stage, user, users, album, photo);
+        stage.setScene(new Scene(root));
     }
 
     //Changing Scenes

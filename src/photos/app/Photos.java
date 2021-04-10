@@ -1,5 +1,6 @@
 package photos.app;
 
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -36,6 +37,7 @@ public class Photos extends Application{
         //shutdown is used to creates and store session data
         // stage.setOnHidden(e -> listController.shutdown());
         stage.show();
+        stage.setOnCloseRequest(e -> Platform.exit());
 
 
     }
