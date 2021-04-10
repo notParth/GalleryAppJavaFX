@@ -1,5 +1,6 @@
 package photos.model;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -23,6 +24,19 @@ public class Album {
         this.name = name;
         photos = new ArrayList<Photo>();
         numberPhotos = 0;
+    }
+
+    public Album(serAlbum serialized_album) throws FileNotFoundException {
+        photos = new ArrayList<Photo>();
+        this.name = serialized_album.getName();
+        this.numberPhotos = serialized_album.getNumberPhotos();
+        this.earliestDate = serialized_album.getEarliestDate();
+        this.latestDate = serialized_album.getLatestDate();
+        for (serPhoto p : serialized_album.getPhotos()) {
+            this.photos.add(new Photo(p));
+        }
+        this.EDS = serialized_album.getEDS();
+        this.LDS = serialized_album.getLDS();
     }
 
     public String getName(){

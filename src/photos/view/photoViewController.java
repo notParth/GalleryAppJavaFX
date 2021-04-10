@@ -12,14 +12,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import photos.model.Album;
 import photos.model.Photo;
 import photos.model.Tag;
 import photos.model.User;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
@@ -84,13 +84,18 @@ public class photoViewController {
 
     //Add/Remove/Rename Photo
     public void addPhoto(ActionEvent e) throws Exception {
-        FileDialog explorer = new FileDialog(new JFrame());
-        explorer.setVisible(true);
-        File[] f = explorer.getFiles();
+        //FileDialog explorer = new FileDialog(new JFrame());
+        //explorer.setVisible(true);
+        //File[] f = explorer.getFiles();
+        FileChooser explorer = new FileChooser();
+        explorer.setTitle("Open Image");
+        explorer.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Files", "*.*"));
+        Stage stage = (Stage) back.getScene().getWindow();
+        File f[] = explorer.showOpenMultipleDialog(stage).toArray(new File[0]);
         if (f.length > 0) {
             String path = f[0].getAbsolutePath();
             Image image = new Image(new FileInputStream(path));
-            Photo photo = new Photo(f[0].getName(), f[0].lastModified(), image);
+            Photo photo = new Photo(new File(path), f[0].getName(), f[0].lastModified(), image);
             for (Photo p : album.getPhotos()) {
                 if (p.equals(photo)) {
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR);

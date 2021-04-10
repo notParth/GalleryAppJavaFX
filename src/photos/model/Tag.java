@@ -1,8 +1,9 @@
 package photos.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Tag {
+public class Tag implements Serializable {
     private String name;
     private String value;
 

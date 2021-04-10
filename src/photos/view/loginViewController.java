@@ -13,10 +13,13 @@ import javafx.stage.Stage;
 import photos.model.Album;
 import photos.model.Photo;
 import photos.model.User;
+import photos.model.serUser;
 
 import java.io.FileInputStream;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 public class loginViewController {
@@ -32,25 +35,35 @@ public class loginViewController {
 
     public void start(Stage stage) throws Exception {
         stage.setTitle("Photos Application");
+        users = new ArrayList<User>();
 
+        ArrayList<serUser> ser_users = new ArrayList<>();
+        try
+        {
+            FileInputStream fis = new FileInputStream("MyData");
+            ObjectInputStream ois = new ObjectInputStream(fis);
 
-        //set up
-        Album stockAlbum = new Album("stock");
+            ser_users = (ArrayList) ois.readObject();
 
-        for(int i=1; i<=5; i++){
-            File imageFile = new File("data/image"+i+".jpg");
-            Image image = new Image(new FileInputStream("data/image"+i+".jpg"));
-            Photo photo = new Photo("image"+i, imageFile.lastModified(), image);
-            stockAlbum.addPhoto(photo);
+            ois.close();
+            fis.close();
+        }
+        catch (IOException ioe)
+        {
+            ioe.printStackTrace();
+            return;
+        }
+        catch (ClassNotFoundException c)
+        {
+            System.out.println("Class not found");
+            c.printStackTrace();
+            return;
         }
 
-        User stockUser = new User("stock");
-        stockUser.getAlbums().add(stockAlbum);
-        users = new ArrayList<User>();
-        users.add(stockUser);
-        //System.out.println(stockUser.getAlbums().get(0).getName());
 
-
+        for (serUser u : ser_users) {
+            users.add(new User(u));
+        }
     }
 
     //Changing Scenes (Login)

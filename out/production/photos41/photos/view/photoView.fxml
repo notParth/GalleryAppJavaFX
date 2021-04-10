@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="468.0" prefWidth="663.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photos.view.photoViewController">
+   <children>
+      <ImageView fx:id="imageView" fitHeight="128.0" fitWidth="232.0" layoutX="7.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="prevPhoto" layoutX="13.0" layoutY="158.0" mnemonicParsing="false" onAction="#SPP" text="Previous Image" />
+      <Button fx:id="nextPhoto" layoutX="122.0" layoutY="158.0" mnemonicParsing="false" onAction="#SNP" text="Next Image" />
+      <Text fx:id="caption" layoutX="7.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Caption:" wrappingWidth="232.00000000000006" />
+      <Button fx:id="addTag" layoutX="26.0" layoutY="429.0" mnemonicParsing="false" onAction="#addTag" text="Add Tag" />
+      <Button layoutX="123.0" layoutY="429.0" mnemonicParsing="false" onAction="#deleteTag" text="Delete Tag" />
+      <Text layoutX="251.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Photos:" />
+      <Button layoutX="554.0" layoutY="16.0" mnemonicParsing="false" onAction="#addPhoto" text="Add" />
+      <Button layoutX="554.0" layoutY="52.0" mnemonicParsing="false" onAction="#deletePhoto" text="Remove" />
+      <Button layoutX="554.0" layoutY="89.0" mnemonicParsing="false" onAction="#renamePhoto" text="Recaption" />
+      <Button layoutX="554.0" layoutY="124.0" mnemonicParsing="false" text="Move/Copy To" />
+      <Button fx:id="logout" layoutX="560.0" layoutY="360.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
+      <Button fx:id="back" layoutX="561.0" layoutY="324.0" mnemonicParsing="false" onAction="#back" text="Back" />
+      <TableView fx:id="tableViewPhotos" layoutX="251.0" layoutY="24.0" prefHeight="430.0" prefWidth="291.0">
+        <columns>
+          <TableColumn fx:id="colImage" prefWidth="114.66670227050781" text="Image" />
+          <TableColumn fx:id="colCaption" prefWidth="175.33328247070312" text="Caption" />
+        </columns>
+      </TableView>
+      <TableView fx:id="tableViewTags" layoutX="7.0" layoutY="252.0" prefHeight="169.0" prefWidth="232.0">
+        <columns>
+          <TableColumn fx:id="colName" prefWidth="108.33334589004517" text="Tag" />
+          <TableColumn fx:id="colValue" prefWidth="122.99999237060547" text="Value" />
+        </columns>
+      </TableView>
+      <Text fx:id="dateTaken" layoutX="6.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Taken:" wrappingWidth="222.0" />
+      <Text layoutX="13.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selected Photo:" />
+   </children>
+</AnchorPane>

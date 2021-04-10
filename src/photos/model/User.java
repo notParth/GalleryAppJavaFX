@@ -1,5 +1,6 @@
 package photos.model;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class User {
@@ -10,6 +11,13 @@ public class User {
     public User(String username){
         this.username = username;
         albums = new ArrayList<Album>();
+    }
+    public User(serUser serialized_user) throws FileNotFoundException {
+        this.username = serialized_user.getUsername();
+        albums = new ArrayList<Album>();
+        for (serAlbum a : serialized_user.getAlbums()) {
+            this.albums.add(new Album(a));
+        }
     }
 
     public String getUsername(){

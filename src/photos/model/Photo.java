@@ -4,11 +4,15 @@ package photos.model;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Photo {
 
+    private File path;
     private String caption;
     private Image image; //??? not sure how to work w images
     private Calendar date;
@@ -16,7 +20,8 @@ public class Photo {
     private ImageView imageV;
     private String D;
 
-    public Photo(String caption, long milliDate, Image image){
+    public Photo(File path, String caption, long milliDate, Image image){
+        this.path = path;
         this.caption = caption;
         this.date = Calendar.getInstance();
         date.setTimeInMillis(milliDate);
@@ -29,6 +34,21 @@ public class Photo {
         this.imageV.setImage(image);
         this.tags = new ArrayList<Tag>();
     }
+
+    public Photo(serPhoto serialized_photo) throws FileNotFoundException {
+        this.path = serialized_photo.getPath();
+        this.caption = serialized_photo.getCaption();
+        this.date = serialized_photo.getDate();
+        this.tags = serialized_photo.getTags();
+        this.D = serialized_photo.getD();
+        this.image = new Image(new FileInputStream(path));
+        this.imageV = new ImageView();
+        this.imageV.setFitWidth(50);
+        this.imageV.setFitHeight(50);
+        this.imageV.setImage(image);
+    }
+
+    public File getPath() { return this.path; }
 
     public String getD(){
         return this.D;

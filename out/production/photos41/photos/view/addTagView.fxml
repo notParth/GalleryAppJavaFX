@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="224.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photos.view.addTagViewController">
+   <children>
+      <ComboBox fx:id="tagID" editable="true" layoutX="91.0" layoutY="112.0" prefWidth="150.0" />
+      <TextField fx:id="valueID" layoutX="353.0" layoutY="112.0" />
+      <Text layoutX="55.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Tag">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="55.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please select a tag (you may enter your own if it is not already in the list) and enter a value" />
+      <Text layoutX="55.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tag:" />
+      <Text layoutX="313.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Value:" />
+      <Button fx:id="okAT" layoutX="55.0" layoutY="166.0" mnemonicParsing="false" onAction="#okay" text="OK" />
+      <Button fx:id="cancelAT" layoutX="166.0" layoutY="166.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+   </children>
+</AnchorPane>

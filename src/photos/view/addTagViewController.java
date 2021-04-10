@@ -16,8 +16,6 @@ import photos.model.Photo;
 import photos.model.Tag;
 import photos.model.User;
 
-import javax.swing.*;
-import java.beans.ExceptionListener;
 import java.util.ArrayList;
 
 public class addTagViewController {
