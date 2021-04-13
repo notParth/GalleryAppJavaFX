@@ -26,6 +26,13 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Optional;
 
+/**
+ * controller for handling the photos view
+ *
+ * @author Parth Patel
+ * @author Amanda Kang
+ */
+
 public class photoViewController {
     @FXML
     Button logout, back, nextPhoto, prevPhoto, addTag, MC;
@@ -45,6 +52,14 @@ public class photoViewController {
     private User user;
     private Album album;
 
+    /**
+     * start method for the photos view
+     * @param stage
+     * @param user
+     * @param users
+     * @param album
+     * @throws Exception
+     */
     public void start(Stage stage, User user, ArrayList<User> users, Album album) throws Exception {
         stage.setTitle("Photos Application");
         this.users = users;
@@ -84,6 +99,11 @@ public class photoViewController {
 
     }
 
+    /**
+     * handles the addition of a photo to an album
+     * @param e
+     * @throws Exception
+     */
     //Add/Remove/Rename Photo
     public void addPhoto(ActionEvent e) throws Exception {
         //FileDialog explorer = new FileDialog(new JFrame());
@@ -130,6 +150,11 @@ public class photoViewController {
         }
     }
 
+    /**
+     * handles the renaming of a photo
+     * @param e
+     * @throws Exception
+     */
     public void renamePhoto(ActionEvent e) throws Exception {
         if(!album.getPhotos().isEmpty()){
             TextInputDialog getPhotoName = new TextInputDialog();
@@ -155,6 +180,11 @@ public class photoViewController {
         }
     }
 
+    /**
+     * handles the deletion of a photo
+     * @param e
+     * @throws Exception
+     */
     public void deletePhoto(ActionEvent e) throws Exception {
         if (!album.getPhotos().isEmpty()) {
             Alert cancelAlert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -182,6 +212,11 @@ public class photoViewController {
 
     //Move, Copy
 
+    /**
+     * handles the transition from photos view to move and copy view
+     * @param e
+     * @throws Exception
+     */
     public void moveCopy(ActionEvent e) throws Exception {
         if (user.getAlbums().isEmpty()) {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
@@ -199,6 +234,11 @@ public class photoViewController {
         stage.setScene(new Scene(root));
     }
 
+    /**
+     * handles logging out
+     * @param e
+     * @throws Exception
+     */
     //Changing Scenes
     public void logout(ActionEvent e) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/photos/view/loginView.fxml"));
@@ -206,6 +246,11 @@ public class photoViewController {
         stage.setScene(new Scene(root));
     }
 
+    /**
+     * handles backing into the previous/parent window
+     * @param e
+     * @throws Exception
+     */
     public void back(ActionEvent e) throws Exception {
         Stage stage = (Stage) back.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/albumView.fxml"));
@@ -215,6 +260,11 @@ public class photoViewController {
         stage.setScene(new Scene(root));
     }
 
+    /**
+     * handles the addition of a tag to a photo
+     * @param e
+     * @throws Exception
+     */
     //Adding, Deleting tags
     public void addTag(ActionEvent e) throws Exception {
         if (!album.getPhotos().isEmpty()) {
@@ -227,6 +277,10 @@ public class photoViewController {
         }
     }
 
+    /** handles the deletion of a tag in a photo
+     *
+     * @param e
+     */
     public void deleteTag(ActionEvent e) {
         Photo selectedPhoto = tableViewPhotos.getSelectionModel().getSelectedItem();
         Tag selectedTag = tableViewTags.getSelectionModel().getSelectedItem();

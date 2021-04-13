@@ -16,6 +16,13 @@ import photos.model.User;
 import java.util.ArrayList;
 import java.util.Optional;
 
+/**
+ * controller for handling the album view
+ *
+ * @author Parth Patel
+ * @author Amanda Kang
+ */
+
 public class albumViewController {
 
     @FXML
@@ -29,6 +36,13 @@ public class albumViewController {
     private ArrayList<User> users;
     private User user;
 
+    /**
+     * start method of album view
+     * @param stage
+     * @param user
+     * @param users
+     * @throws Exception
+     */
     public void start(Stage stage, User user, ArrayList<User> users) throws Exception {
         stage.setTitle("Album View");
         this.users = users;
@@ -45,6 +59,10 @@ public class albumViewController {
 
     }
 
+    /**
+     * handles the creation of an album for a user
+     * @param e
+     */
     // Create/Rename/Delete Album
     public void create(ActionEvent e) {
         TextInputDialog getAlbumName = new TextInputDialog();
@@ -78,6 +96,10 @@ public class albumViewController {
         }
     }
 
+    /**
+     * handles the deletion of an album for a user
+     * @param e
+     */
     public void delete(ActionEvent e) {
         if (!user.getAlbums().isEmpty()) {
             Alert cancelAlert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -94,6 +116,10 @@ public class albumViewController {
         }
     }
 
+    /**
+     * handles the renaming of an album for a user
+     * @param e
+     */
     public void rename(ActionEvent e) {
         if (!user.getAlbums().isEmpty()) {
             TextInputDialog getAlbumName = new TextInputDialog();
@@ -130,6 +156,11 @@ public class albumViewController {
         }
     }
 
+    /**
+     * handles the transition from album view to photos view
+     * @param e
+     * @throws Exception
+     */
     // Changing Scenes
     public void open(ActionEvent e) throws Exception {
         if (!user.getAlbums().isEmpty()) {
@@ -142,6 +173,11 @@ public class albumViewController {
         }
     }
 
+    /**
+     * handles the transition from album view to search view
+     * @param e
+     * @throws Exception
+     */
     public void search(ActionEvent e) throws Exception {
         Stage stage = (Stage) search.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/searchView.fxml"));
@@ -151,6 +187,11 @@ public class albumViewController {
         stage.setScene(new Scene(root));
     }
 
+    /**
+     * handles logging out for a given user
+     * @param e
+     * @throws Exception
+     */
     public void logout(ActionEvent e) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/photos/view/loginView.fxml"));
         Stage stage = (Stage) logout.getScene().getWindow();

@@ -15,6 +15,13 @@ import photos.model.User;
 
 import java.util.ArrayList;
 
+/**
+ * controller to handle the admin view
+ *
+ * @author Parth Patel
+ * @author Amanda Kang
+ */
+
 public class adminViewController {
 
     @FXML
@@ -24,6 +31,12 @@ public class adminViewController {
     @FXML
     ListView<User> listView;
 
+    /**
+     * start method for the admin view
+     * @param stage
+     * @param users
+     * @throws Exception
+     */
     public void start(Stage stage, ArrayList<User> users) throws Exception {
         stage.setTitle("Admin View");
         listView.setItems(FXCollections.observableArrayList(users));
@@ -34,6 +47,10 @@ public class adminViewController {
 
     }
 
+    /**
+     * handles the addition of a user to the application database
+     * @param users
+     */
     //Create User
     public void addUser(ArrayList<User> users){
         String name = username.getText().trim();
@@ -60,6 +77,10 @@ public class adminViewController {
         }
     }
 
+    /**
+     * handles the deletion of a user from the application database
+     * @param users
+     */
     //Delete User
     public void delete(ArrayList<User> users){
         User deletedUser = listView.getSelectionModel().getSelectedItem();
@@ -75,6 +96,11 @@ public class adminViewController {
         }
     }
 
+    /**
+     * handles the logging out an admin from the admin view
+     * @param e
+     * @throws Exception
+     */
     //Change Scenes
     public void logout(ActionEvent e) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/photos/view/loginView.fxml"));

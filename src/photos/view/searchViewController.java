@@ -21,6 +21,13 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+/**
+ * controller for handling the search view
+ *
+ * @author Parth Patel
+ * @author Amanda Kang
+ */
+
 public class searchViewController {
     @FXML
     Button back;
@@ -36,6 +43,14 @@ public class searchViewController {
     private Album results;
     private ArrayList<User> users;
     private User user;
+
+    /**
+     * start method for the search view
+     * @param stage
+     * @param user
+     * @param users
+     * @throws Exception
+     */
     public void start(Stage stage, User user, ArrayList<User> users) throws Exception {
         stage.setTitle("Search View");
         this.users = users;
@@ -66,6 +81,11 @@ public class searchViewController {
 
     }
 
+    /**
+     * handles search by date range
+     * @param e
+     * @throws Exception
+     */
     //searches
     public void searchDate(ActionEvent e) throws Exception{
         if(!results.getPhotos().isEmpty()){
@@ -138,6 +158,10 @@ public class searchViewController {
         imageView.setImage(tableView.getSelectionModel().getSelectedItem().getImage());
     }
 
+    /**
+     * handles search by tags
+     * @param e
+     */
     public void searchTag(ActionEvent e){
         if(!results.getPhotos().isEmpty()){
             results.getPhotos().clear();
@@ -236,6 +260,10 @@ public class searchViewController {
         imageView.setImage(tableView.getSelectionModel().getSelectedItem().getImage());
     }
 
+    /**
+     * handles creation of album from search results
+     * @param e
+     */
     public void createAlbum(ActionEvent e){
         String name = albumName.getText().trim();
         if(results.getPhotos().isEmpty()){
@@ -277,6 +305,11 @@ public class searchViewController {
         return;
     }
 
+    /**
+     * handles backing out in to previous/parent window
+     * @param e
+     * @throws Exception
+     */
     //Change Scenes
     public void back(ActionEvent e) throws Exception{
         Stage stage = (Stage) back.getScene().getWindow();

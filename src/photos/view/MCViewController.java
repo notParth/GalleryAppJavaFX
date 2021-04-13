@@ -17,6 +17,13 @@ import photos.model.User;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+/**
+ * controller for handling the move and copy view
+ *
+ * @author Parth Patel
+ * @author Amanda Kang
+ */
+
 public class MCViewController {
     private ArrayList<User> users;
     private User user;
@@ -32,6 +39,15 @@ public class MCViewController {
     @FXML
     Text text;
 
+    /**
+     * start method for move and copy view
+     * @param stage
+     * @param user
+     * @param users
+     * @param album
+     * @param photo
+     * @throws Exception
+     */
     public void start(Stage stage, User user, ArrayList<User> users, Album album, Photo photo) throws Exception {
         stage.setTitle("Move/Copy Application");
         this.users = users;
@@ -52,6 +68,11 @@ public class MCViewController {
         tableView.getSelectionModel().select(0);
     }
 
+    /**
+     * handles copying of an album
+     * @param e
+     * @throws Exception
+     */
     public void copy(ActionEvent e) throws Exception {
         Album dest = tableView.getSelectionModel().getSelectedItem();
         dest.addPhoto(photo);
@@ -65,6 +86,11 @@ public class MCViewController {
 
     }
 
+    /**
+     * handles moving of an album
+     * @param e
+     * @throws Exception
+     */
     public void move(ActionEvent e) throws Exception {
         Album dest = tableView.getSelectionModel().getSelectedItem();
         dest.addPhoto(photo);
@@ -79,6 +105,11 @@ public class MCViewController {
 
     }
 
+    /**
+     * handles the transition from the current window to the previous one
+     * @param e
+     * @throws Exception
+     */
     public void back(ActionEvent e)throws Exception {
         Stage stage = (Stage) back.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/photoView.fxml"));

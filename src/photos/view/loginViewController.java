@@ -22,6 +22,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
+/**
+ * controller for handling logging in event. It is also the primary point of entry.
+ *
+ * @author Parth Patel
+ * @author Amanda Kang
+ */
+
 public class loginViewController {
 
     @FXML
@@ -32,7 +39,11 @@ public class loginViewController {
     private final String path = "data/data.dat";
     public static ArrayList<User> users;
 
-
+    /**
+     * start method of login view
+     * @param stage
+     * @throws Exception
+     */
     public void start(Stage stage) throws Exception {
         stage.setTitle("Photos Application");
         users = new ArrayList<User>();
@@ -68,6 +79,11 @@ public class loginViewController {
 
     //Changing Scenes (Login)
 
+    /**
+     * handles the transition from login view to a different view (depends on the user)
+     * @param e
+     * @throws Exception
+     */
     public void login(ActionEvent e) throws Exception{
         Stage stage = (Stage) login.getScene().getWindow();
         if (username.getText().trim().equals("admin")){

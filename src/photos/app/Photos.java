@@ -17,9 +17,19 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import static javafx.application.Application.launch;
-
+/**
+ * entry point for photos application
+ *
+ * @author Parth Patel
+ * @author Amanda Kang
+ */
 public class Photos extends Application{
 
+    /**
+     * Start method for the application
+     * @param stage primary stage is passed here
+     * @throws Exception
+     */
     @Override
     public void start(Stage stage) throws Exception{
 
@@ -42,6 +52,10 @@ public class Photos extends Application{
 
     }
 
+    /**
+     * stop is called when the application is closing. Its primary function is to create
+     * and save serializable data
+     */
     @Override
     public void stop() {
         try

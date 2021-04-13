@@ -18,6 +18,13 @@ import photos.model.User;
 
 import java.util.ArrayList;
 
+/**
+ * controller to handle the addTag view
+ *
+ * @author Parth Patel
+ * @author Amanda Kang
+ */
+
 public class addTagViewController {
     @FXML
     ComboBox<String> tagID;
@@ -32,6 +39,15 @@ public class addTagViewController {
     private Photo photo;
     public static ArrayList<String> existingTags;
 
+    /**
+     * start method
+     * @param stage
+     * @param user
+     * @param users
+     * @param album
+     * @param photo
+     * @throws Exception
+     */
     public void start(Stage stage, User user, ArrayList<User> users, Album album, Photo photo) throws Exception {
         this.users = users;
         this.user = user;
@@ -47,6 +63,11 @@ public class addTagViewController {
         tagID.setItems(FXCollections.observableArrayList(existingTags));
     }
 
+    /**
+     * handles the confirmation of a tag addition
+     * @param e
+     * @throws Exception
+     */
     public void okay(ActionEvent e) throws Exception{
         String name = tagID.getValue().trim();
         String value = valueID.getText().trim();
@@ -98,13 +119,18 @@ public class addTagViewController {
         }
     }
 
-public void cancel(ActionEvent e)throws Exception {
-    Stage stage = (Stage) cancelAT.getScene().getWindow();
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/photoView.fxml"));
-    Parent root = (Parent) loader.load();
-    photoViewController controller = loader.<photoViewController>getController();
-    controller.start(stage, user, users, album);
-    stage.setScene(new Scene(root));
-}
+    /**
+     * handles the cancellation of a tag addition
+     * @param e
+     * @throws Exception
+     */
+    public void cancel(ActionEvent e)throws Exception {
+        Stage stage = (Stage) cancelAT.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/photoView.fxml"));
+        Parent root = (Parent) loader.load();
+        photoViewController controller = loader.<photoViewController>getController();
+        controller.start(stage, user, users, album);
+        stage.setScene(new Scene(root));
+    }
 
 }
